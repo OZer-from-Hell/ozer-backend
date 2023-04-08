@@ -17,7 +17,7 @@ class Nickname(APIView) :
         serializer.is_valid(raise_exception=True)
         serializer.save()
         
-        return Response(data={'success':'nickname was accepted'}, status=status.HTTP_201_CREATED)
+        return Response(data=serializer.data, status=status.HTTP_201_CREATED)
        
         
 # class Score(APIView) :
