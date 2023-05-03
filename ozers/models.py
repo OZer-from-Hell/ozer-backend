@@ -7,6 +7,8 @@ class Ozer(models.Model):
     answers = models.CharField(max_length=255, blank=True, null=True)
     score = models.PositiveIntegerField(default=0, blank=True, null=False)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
+ 
     def __str__(self):
         return self.nickname
 
