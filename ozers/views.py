@@ -64,10 +64,14 @@ class OzerView(APIView) :
         return Response(data=serializer.data, status=status.HTTP_200_OK)
         
             
-# class Score(APIView) :
-
-#     def post(self, request):
+class TotalOzerView(APIView) :
+    def get(self, request):
+        list_id = request.GET.get('list_id', None)
+        try:
+            List.objects.get(id=list_id)
+        except List.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND,data='This list does not exist')
         
-# class Ranking(APIView) :
-
-#     def get(self, request):
+        total_ozer = TotalOzer.objects.get(list = list_id)
+        serializer = serializers.TotalOzerSerializer(total_ozer)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
